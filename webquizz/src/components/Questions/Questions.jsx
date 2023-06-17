@@ -1,20 +1,27 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { QuizzContext } from "../../context/QuizzContext";
 import { Options } from "../Options/Options";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./Question.css";
 
 export const Questions = () => {
   const [quizzState, dispatch] = useContext(QuizzContext);
-  const currentQuest = quizzState.questions[quizzState.currentQuest];
-  const navigate = useNavigate();
+  const currentQuest = quizzState.questions[quizzState.currentQuest]
+  const navigate = useNavigate()
+  const location = useLocation()
 
-  const onSelectOption = (option) => {
+  useEffect(() => {
+    if (location.pathname === '/questions') {
+      dispatch({ type: 'CHANGE_STATE' });
+    }
+  }, [location.pathname, dispatch]);
+
+  const onSelectOption = (opcoes) => {
     dispatch({
       type: "CHECK_ANSWER",
       payload: {
-        answer: currentQuest.answer,
-        option,
+        resposta: currentQuest.resposta,
+        opcoes,
       },
     });
   };
@@ -22,13 +29,13 @@ export const Questions = () => {
   return (
     <div id="question">
       <p>Pergunta de {quizzState.currentQuest + 1} a {quizzState.questions.length}</p>
-      <h2>{currentQuest.question}</h2>
+      <h2>{currentQuest.pergunta}</h2>
       <div id="options-container">
-        {currentQuest.options.map((opt) => (
+        {currentQuest.opcoes.map((opt) => (
           <Options
-            option={opt}
+            opcoes={opt}
             key={opt}
-            answer={currentQuest.answer}
+            resposta={currentQuest.resposta}
             selectOption={() => onSelectOption(opt)}
           />
         ))}

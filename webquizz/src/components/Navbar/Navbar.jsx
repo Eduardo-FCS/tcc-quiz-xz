@@ -2,63 +2,59 @@
 import { useAuthValue } from '../../context/AuthContext'
 import { useAuthentication } from '../../hooks/useAuthentication'
 import styles from './Navbar.module.css'
- import { NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 export const Navbar = () => {
     const { logout } = useAuthentication();
     const { user } = useAuthValue();
-  
+
     return (
-    <nav className={styles.navbar}>
+        <nav className={styles.navbar}>
 
-        <NavLink className={styles.brand} to="/"> Web <span>Quizz</span></NavLink>
+            <NavLink className={styles.brand} to="/"> Web <span>Quizz</span></NavLink>
 
-        <ul className={styles.links}>
-        <li>
-            <NavLink to="/" className={({ isActive }) => (isActive ? styles.active : "")}> Home </NavLink>
-        </li>
+            <ul className={styles.links}>
+                <li>
+                    <NavLink to="/" className={({ isActive }) => (isActive ? styles.active : "")}> Home </NavLink>
+                </li>
 
-            {!user && (
-        <>
+                {!user && (
+                    <>
 
-        <li>
-            <NavLink  to="/login" className={({ isActive }) => (isActive ? styles.active : "")}> Entrar </NavLink>       
-        </li>
+                        <li>
+                            <NavLink to="/login" className={({ isActive }) => (isActive ? styles.active : "")}> Entrar </NavLink>
+                        </li>
 
-        <li>
-            <NavLink to="/register" className={({ isActive }) => (isActive ? styles.active : "")}> Cadastrar </NavLink>
-        </li>
+                        <li>
+                            <NavLink to="/register" className={({ isActive }) => (isActive ? styles.active : "")}> Cadastrar </NavLink>
+                        </li>
 
-        </>
-            )}
-            {user && (
-            <>
-        <li>
-                <NavLink to="/posts/create"className={({ isActive }) => (isActive ? styles.active : "")}> Novo publicação </NavLink>
-        </li>
+                    </>
+                )}
+                {user && (
+                    <>
+                        <li>
+                            <NavLink to="/posts/create" className={({ isActive }) => (isActive ? styles.active : "")}> Novo publicação </NavLink>
+                        </li>
 
-        <li>
-                <NavLink to="/dashboard" className={({ isActive }) => (isActive ? styles.active : "")}> Dashboard </NavLink>
-        </li>
+                        <li>
+                            <NavLink to="/dashboard" className={({ isActive }) => (isActive ? styles.active : "")}> Dashboard </NavLink>
+                        </li>
 
-        <li>
-                <NavLink to="/welcome" className={({ isActive }) => (isActive ? styles.active : "")}> Welcome </NavLink>
-        </li>
+                    </>
+                )}
 
-        </>
-            )}
+                <li>
+                    <NavLink to="/about" className={({ isActive }) => (isActive ? styles.active : "")}>  Sobre </NavLink>
+                </li>
+                {user && (
+                    <li>
+                        <button onClick={logout}>Sair</button>
+                    </li>
+                )}
 
-        <li>
-                <NavLink to="/about" className={({ isActive }) => (isActive ? styles.active : "")}>  Sobre </NavLink>
-        </li>
-            {user && (
-        <li>
-            <button onClick={logout}>Sair</button>
-        </li>
-            )}
+            </ul>
 
-        </ul>
-
-    </nav>
+        </nav>
     )
-  }
+}

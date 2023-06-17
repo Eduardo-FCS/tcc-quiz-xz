@@ -3,8 +3,7 @@ import styles from '../Welcome/Welcome.module.css'
 //hooks 
 import { useContext } from 'react'
 import { QuizzContext } from '../../context/QuizzContext'
-import { Navigate, useNavigate } from 'react-router-dom'
-
+import { useNavigate } from 'react-router-dom'
 
 
 export const Welcome = () => {
@@ -12,7 +11,6 @@ export const Welcome = () => {
   const [quizzState, dispatch] = useContext(QuizzContext)
   const nav = useNavigate()
   
-
   return (
     <div className={styles.welcome}>
       <h2>WebQuizz</h2>

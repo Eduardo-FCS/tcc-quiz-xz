@@ -1,6 +1,7 @@
 //data
 import { useNavigate } from 'react-router-dom'
 import { questions } from '../data/questions'
+
 // hooks
 import { createContext, useReducer } from "react"
 
@@ -53,8 +54,8 @@ const quizzReducer = (state, action) => {
         case "CHECK_ANSWER":
             if (state.answerSelected) return state
 
-            const answer = action.payload.answer
-            const option = action.payload.option
+            const answer = action.payload.resposta
+            const option = action.payload.opcoes
             let correctAnswer = 0
 
             if (answer === option) { correctAnswer = 1 }
