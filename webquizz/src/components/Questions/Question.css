@@ -21,17 +21,17 @@
     gap: 10px;
   }
   
-  button {
+#question button {
     padding: 10px 20px;
     font-size: 16px;
-    background-color: #007bff;
+    background-color: #663399;
     color: #fff;
     border: none;
     border-radius: 4px;
     cursor: pointer;
   }
   
-  button:hover {
-    background-color: #0056b3;
+#question button:hover {
+    background-color: #41067c;
   }
   

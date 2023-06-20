@@ -1,20 +1,13 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { QuizzContext } from "../../context/QuizzContext";
 import { Options } from "../Options/Options";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./Question.css";
 
 export const Questions = () => {
   const [quizzState, dispatch] = useContext(QuizzContext);
   const currentQuest = quizzState.questions[quizzState.currentQuest]
   const navigate = useNavigate()
-  const location = useLocation()
-
-  useEffect(() => {
-    if (location.pathname === '/questions') {
-      dispatch({ type: 'CHANGE_STATE' });
-    }
-  }, [location.pathname, dispatch]);
 
   const onSelectOption = (opcoes) => {
     dispatch({
@@ -26,6 +19,7 @@ export const Questions = () => {
     });
   };
 
+  //aaaa
   return (
     <div id="question">
       <p>Pergunta de {quizzState.currentQuest + 1} a {quizzState.questions.length}</p>
